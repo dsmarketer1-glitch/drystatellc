@@ -24,11 +24,13 @@ const imgContainer5 = "/assets/339011e3d3901e4315b1bb3986bd638433e41c91.svg";
 const imgIcon9 = "/assets/e4a6b039c39cc74aa911a6f21c2aa8127547ff05.svg";
 const imgIcon10 = "/assets/51bed875f516d7ac34f66e979316fc405aed7f46.svg";
 const imgIcon11 = "/assets/46552a0c5be0a2e761f43191ab8b4a706113879d.svg";
-const imgButton = "/assets/e4b2731a68bc6a772c595be2337564fbb1724fcf.svg";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function DryStateExpertWaterDamageRestoration() {
   return (
-    <div className="content-stretch flex flex-col items-start pb-[18.25px] relative size-full" data-node-id="1:2" style={{ backgroundImage: "linear-gradient(90deg, rgb(250, 248, 255) 0%, rgb(250, 248, 255) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }} data-name="DryState - Expert Water Damage Restoration">
+    <div className="content-stretch flex flex-col items-center pb-[18.25px] relative size-full pt-[100px] bg-white overflow-x-hidden" data-node-id="1:2" style={{ backgroundImage: "linear-gradient(90deg, rgb(250, 248, 255) 0%, rgb(250, 248, 255) 100%), linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%)" }} data-name="DryState - Expert Water Damage Restoration">
+      <Header />
       <div className="h-[6909.5px] relative shrink-0 w-full" data-node-id="1:3" data-name="Main">
         <div className="absolute bg-[#f3f2ff] content-stretch flex flex-col items-start left-0 py-[128px] right-0 top-[1001px]" data-node-id="1:4" data-name="Section - Our Precision Drying Process">
           <div className="content-stretch flex flex-col gap-[80px] items-start max-w-[1280px] mx-auto px-[32px] relative shrink-0 w-full" data-node-id="1:5" data-name="Container">
@@ -789,7 +791,7 @@ export default function DryStateExpertWaterDamageRestoration() {
                     <div className="relative shrink-0 w-full" data-node-id="1:304" data-name="Container">
                       <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
                         <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[30px] text-white w-full" data-node-id="1:305">
-                          <p className="leading-[36px]">1-800-DRY-STATE</p>
+                          <p className="leading-[36px]">214 785 1130</p>
                         </div>
                       </div>
                     </div>
@@ -882,175 +884,7 @@ export default function DryStateExpertWaterDamageRestoration() {
           </div>
         </div>
       </div>
-      <div className="bg-[#f8fafc] border-[rgba(226,232,240,0.2)] border-solid border-t content-stretch flex flex-col gap-[80px] items-start pb-[80px] pt-[81px] relative shrink-0 w-full" data-node-id="1:342" data-name="Footer">
-        <div className="max-w-[1280px] mx-auto relative shrink-0 w-full" data-node-id="1:343" data-name="Container">
-          <div className="bg-clip-padding border-0 border-[transparent] border-solid gap-x-[48px] gap-y-[48px] grid grid-cols-[repeat(4,minmax(0,1fr))] grid-rows-[_168.25px] max-w-[inherit] px-[32px] relative size-full">
-            <div className="col-1 content-stretch flex flex-col gap-[22.8px] items-start justify-self-stretch relative row-1 self-start shrink-0" data-node-id="1:344" data-name="Container">
-              <div className="flex flex-col justify-center leading-[0] relative shrink-0 whitespace-nowrap" data-node-id="1:345">
-                <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[400px] h-[90px] object-contain object-left transform scale-[2] translate-x-4 origin-left" />
-              </div>
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:346" data-name="Container">
-                <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#64748b] text-[14px] w-full" data-node-id="1:347">
-                  <p className="leading-[22.75px] mb-0">Expert Water Damage Restoration and</p>
-                  <p className="leading-[22.75px] mb-0">Emergency Cleanup services for the</p>
-                  <p className="leading-[22.75px]">entire DFW Metroplex.</p>
-                </div>
-              </div>
-              <div className="content-stretch flex gap-[16px] h-[23.7px] items-start pt-[1.2px] relative shrink-0 w-full" data-node-id="1:348" data-name="Container">
-                <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-node-id="1:349" data-name="Container">
-                  <div className="h-[19.5px] relative shrink-0 w-[17.5px]" data-node-id="1:350" data-name="Icon">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIcon9} />
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-node-id="1:351" data-name="Container">
-                  <div className="h-[22.5px] relative shrink-0 w-[23.5px]" data-node-id="1:352" data-name="Icon">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIcon10} />
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative self-stretch shrink-0" data-node-id="1:353" data-name="Container">
-                  <div className="h-[18.942px] relative shrink-0 w-[15px]" data-node-id="1:354" data-name="Icon">
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIcon11} />
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-2 content-stretch flex flex-col gap-[24px] items-start justify-self-stretch pb-[12.25px] relative row-1 self-start shrink-0" data-node-id="1:355" data-name="Container">
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:356" data-name="Heading 5">
-                <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#172554] text-[14px] tracking-[1.4px] uppercase w-full" data-node-id="1:357">
-                  <p className="leading-[20px]">OUR SERVICES</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="1:358" data-name="List">
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:359" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:360">
-                    <p className="leading-[16px]">Water Cleanup</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:361" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:362">
-                    <p className="leading-[16px]">Mold Removal</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:363" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:364">
-                    <p className="leading-[16px]">Fire Restoration</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:365" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:366">
-                    <p className="leading-[16px]">Emergency Drying</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-3 content-stretch flex flex-col gap-[24px] items-start justify-self-stretch pb-[12.25px] relative row-1 self-start shrink-0" data-node-id="1:367" data-name="Container">
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:368" data-name="Heading 5">
-                <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#172554] text-[14px] tracking-[1.4px] uppercase w-full" data-node-id="1:369">
-                  <p className="leading-[20px]">HELPFUL INFO</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="1:370" data-name="List">
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:371" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:372">
-                    <p className="leading-[16px]">DFW Locations</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:373" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:374">
-                    <p className="leading-[16px]">Water Damage Tips</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:375" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:376">
-                    <p className="leading-[16px]">Privacy Policy</p>
-                  </div>
-                </div>
-                <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:377" data-name="Item">
-                  <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:378">
-                    <p className="leading-[16px]">Insurance Help</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-4 content-stretch flex flex-col gap-[24px] items-start justify-self-stretch pb-[21.75px] relative row-1 self-start shrink-0" data-node-id="1:379" data-name="Container">
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:380" data-name="Heading 5">
-                <div className="flex flex-col font-['Manrope:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#172554] text-[14px] tracking-[1.4px] uppercase w-full" data-node-id="1:381">
-                  <p className="leading-[20px]">LOCAL DFW OFFICE</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:382" data-name="Container">
-                <div className="flex flex-col font-['Inter:Regular',sans-serif] font-normal justify-center leading-[0] not-italic relative shrink-0 text-[#64748b] text-[12px] w-full" data-node-id="1:383">
-                  <p className="leading-[19.5px] mb-0">8400 Boulevard 26</p>
-                  <p className="leading-[19.5px] mb-0">Richland Hills, TX 76180</p>
-                  <p className="leading-[19.5px]">United States</p>
-                </div>
-              </div>
-              <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-node-id="1:384" data-name="Container">
-                <div className="flex flex-col font-['Inter:Semi_Bold',sans-serif] font-semibold justify-center leading-[0] not-italic relative shrink-0 text-[#b81c2f] text-[14px] w-full" data-node-id="1:385">
-                  <p className="leading-[20px]">Open 24/7/365</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="border-[#e2e8f0] border-solid border-t max-w-[1280px] mx-auto relative shrink-0 w-full" data-node-id="1:386" data-name="HorizontalBorder">
-          <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start max-w-[inherit] pt-[33px] px-[32px] relative size-full">
-            <div className="relative shrink-0 w-full" data-node-id="1:387" data-name="Container">
-              <div className="bg-clip-padding border-0 border-[transparent] border-solid content-stretch flex flex-col items-start relative size-full">
-                <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#94a3b8] text-[10px] tracking-[1px] uppercase w-full" data-node-id="1:388">
-                  <p className="leading-[15px]">© 2024 DRYSTATE WATER RESTORATION. ALL RIGHTS RESERVED.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute backdrop-blur-[12px] bg-[rgba(248,250,252,0.6)] content-stretch flex flex-col items-start left-0 shadow-[0px_1px_2px_0px_rgba(0,0,0,0.05)] top-0 w-full items-center left-0 right-0" data-node-id="1:389" data-name="Header - Top Navigation">
-        <div className="content-stretch flex items-center justify-between max-w-[1536px] mx-auto pl-[32px] pr-[32.02px] py-[16px] relative shrink-0 w-full" data-node-id="1:390" data-name="Container">
-          <div className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:391" data-name="Link">
-            <div className="flex flex-col justify-center leading-[0] relative shrink-0 whitespace-nowrap" data-node-id="1:392">
-              <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[400px] h-[90px] object-contain object-left transform scale-[2] translate-x-4 origin-left" />
-            </div>
-          </div>
-          <div className="content-stretch flex items-center relative shrink-0" data-node-id="1:393" data-name="Nav">
-            <div className="border-[#1e3a8a] border-b-2 border-solid content-stretch flex flex-col items-start pb-[6px] relative shrink-0" data-node-id="1:394" data-name="Link">
-              <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#1e3a8a] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:395">
-                <p className="leading-[16px]">OUR SERVICES</p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col items-start pl-[32px] relative shrink-0" data-node-id="1:396" data-name="Link:margin">
-              <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#475569] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:397">
-                <p className="leading-[16px]">OUR PROCESS</p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col items-start pl-[32px] relative shrink-0" data-node-id="1:398" data-name="Link:margin">
-              <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#475569] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:399">
-                <p className="leading-[16px]">RESPONSE PLAN</p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col items-start pl-[32px] relative shrink-0" data-node-id="1:400" data-name="Link:margin">
-              <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#475569] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:401">
-                <p className="leading-[16px]">SERVICE AREAS</p>
-              </div>
-            </div>
-            <div className="content-stretch flex flex-col items-start pl-[32px] relative shrink-0" data-node-id="1:402" data-name="Link:margin">
-              <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#475569] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:403">
-                <p className="leading-[16px]">HELPFUL TIPS</p>
-              </div>
-            </div>
-          </div>
-          <div className="content-stretch flex gap-[16px] items-center relative shrink-0" data-node-id="1:404" data-name="Container">
-            <div className="relative shrink-0 size-[34.8px]" data-node-id="1:405" data-name="Button">
-              <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgButton} />
-            </div>
-            <div className="bg-[#081b4d] content-stretch flex flex-col items-center justify-center px-[24px] py-[10px] relative rounded-[6px] shrink-0" data-node-id="1:407" data-name="Button">
-              <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[12px] text-center text-white tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:408">
-                <p className="leading-[16px]">EMERGENCY HELP</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }
