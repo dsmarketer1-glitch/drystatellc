@@ -9,7 +9,7 @@ const Footer = () => {
     return (
         <div className="bg-[#f8fafc] border-[rgba(226,232,240,0.2)] border-solid border-t content-stretch flex flex-col gap-[80px] items-start pb-[80px] pt-[81px] relative shrink-0 w-full" data-node-id="1:342" data-name="Footer">
             <div className="max-w-[1280px] mx-auto relative shrink-0 w-full" data-node-id="1:343" data-name="Container">
-                <div className="bg-clip-padding border-0 border-[transparent] border-solid gap-x-[48px] gap-y-[48px] grid grid-cols-[repeat(4,minmax(0,1fr))] grid-rows-auto max-w-[inherit] px-[32px] relative size-full">
+                <div className="bg-clip-padding border-0 border-[transparent] border-solid gap-x-[48px] gap-y-[48px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-[inherit] px-[32px] relative size-full">
                     <div className="col-1 content-stretch flex flex-col gap-[22.8px] items-start justify-self-stretch relative row-1 self-start shrink-0" data-node-id="1:344" data-name="Container">
                         <div className="flex flex-col justify-center leading-[0] relative shrink-0 whitespace-nowrap" data-node-id="1:345">
                             <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[400px] h-[90px] object-contain object-left transform scale-[2] translate-x-4 origin-left" />

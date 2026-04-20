@@ -5,6 +5,7 @@ const imgButton = "/assets/e4b2731a68bc6a772c595be2337564fbb1724fcf.svg";
 
 const Header = () => {
     const [openDropdown, setOpenDropdown] = useState(null);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const restorationServices = [
         { name: "Content Cleaning and Packing", path: "/content-cleaning-and-packing" },
@@ -28,26 +29,47 @@ const Header = () => {
     ];
 
     const areasWeServe = [
-        { name: "Richland Hills & All DFW Metroplex", path: "/" }, // Temporarily pointing to home
+        { name: "Richland Hills & All DFW Metroplex", path: "/" },
+        { name: "Arlington & All DFW Metroplex", path: "/arlington-all-dfw-metroplex" },
     ];
 
     const handleMouseEnter = (menu) => {
-        setOpenDropdown(menu);
+        if (window.innerWidth >= 1024) {
+            setOpenDropdown(menu);
+        }
     };
 
     const handleMouseLeave = () => {
-        setOpenDropdown(null);
+        if (window.innerWidth >= 1024) {
+            setOpenDropdown(null);
+        }
+    };
+
+    const toggleDropdown = (menu) => {
+        setOpenDropdown(openDropdown === menu ? null : menu);
     };
 
     return (
-        <div className="fixed backdrop-blur-[12px] bg-[rgba(248,250,252,0.95)] content-stretch flex flex-col items-start left-0 shadow-lg top-0 w-full items-center z-[100] transition-all duration-300" data-node-id="1:389" data-name="Header - Top Navigation">
+        <div className="fixed backdrop-blur-[12px] bg-[rgba(248,250,252,0.95)] flex flex-col items-start left-0 shadow-lg top-0 w-full items-center z-[100] transition-all duration-300" data-node-id="1:389" data-name="Header - Top Navigation">
             <div className="content-stretch flex items-center justify-between max-w-[1536px] mx-auto pl-[32px] pr-[32.02px] py-[16px] relative shrink-0 w-full" data-node-id="1:390" data-name="Container">
                 <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:391" data-name="Link">
                     <div className="flex flex-col justify-center leading-[0] relative shrink-0 whitespace-nowrap" data-node-id="1:392">
-                        <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[300px] h-[60px] object-contain object-left transform scale-[1.8] translate-x-8 origin-left transition-all duration-300" />
+                        <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[200px] md:max-w-[300px] h-[40px] md:h-[60px] object-contain object-left transform md:scale-[1.8] md:translate-x-8 origin-left transition-all duration-300" />
                     </div>
                 </Link>
-                <div className="content-stretch flex items-center relative shrink-0 h-full" data-node-id="1:393" data-name="Nav">
+
+                {/* Mobile Menu Toggle */}
+                <button 
+                    className="lg:hidden p-2 text-[#081b4d]"
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
+                >
+                    <div className="w-6 h-0.5 bg-current mb-1.5 transition-all"></div>
+                    <div className="w-6 h-0.5 bg-current mb-1.5 transition-all"></div>
+                    <div className="w-6 h-0.5 bg-current transition-all"></div>
+                </button>
+
+                {/* Navigation - Desktop */}
+                <div className="hidden lg:flex items-center relative shrink-0 h-full" data-node-id="1:393" data-name="Nav">
                     {/* Restoration Services Dropdown */}
                     <div 
                         className="relative group h-full flex flex-col justify-center"
@@ -132,7 +154,8 @@ const Header = () => {
                         </div>
                     </Link>
                 </div>
-                <div className="content-stretch flex gap-[24px] items-center relative shrink-0" data-node-id="1:404" data-name="Container">
+
+                <div className="hidden lg:flex gap-[24px] items-center relative shrink-0" data-node-id="1:404" data-name="Container">
                     <div className="flex flex-col items-end">
                         <span className="text-[10px] font-bold text-[#b81c2f] tracking-[1px] uppercase">Emergency Line</span>
                         <a href="tel:2147851130" className="text-[18px] font-bold text-[#081b4d] hover:text-[#b81c2f] transition-colors">214 785 1130</a>
@@ -144,6 +167,82 @@ const Header = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Mobile Navigation Menu */}
+            {isMenuOpen && (
+                <div className="lg:hidden w-full bg-white border-t border-slate-100 py-6 px-8 space-y-6 animate-in slide-in-from-top duration-300">
+                    <div className="space-y-4">
+                        <button 
+                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#1e3a8a] tracking-wider uppercase"
+                            onClick={() => toggleDropdown('restoration')}
+                        >
+                            RESTORATION SERVICES
+                            <span>{openDropdown === 'restoration' ? '−' : '+'}</span>
+                        </button>
+                        {openDropdown === 'restoration' && (
+                            <div className="pl-4 space-y-3">
+                                {restorationServices.map((service, index) => (
+                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="space-y-4">
+                        <button 
+                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#475569] tracking-wider uppercase"
+                            onClick={() => toggleDropdown('cleaning')}
+                        >
+                            CLEANING SERVICES
+                            <span>{openDropdown === 'cleaning' ? '−' : '+'}</span>
+                        </button>
+                        {openDropdown === 'cleaning' && (
+                            <div className="pl-4 space-y-3">
+                                {cleaningServices.map((service, index) => (
+                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="space-y-4">
+                        <button 
+                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#475569] tracking-wider uppercase"
+                            onClick={() => toggleDropdown('areas')}
+                        >
+                            AREAS WE SERVE
+                            <span>{openDropdown === 'areas' ? '−' : '+'}</span>
+                        </button>
+                        {openDropdown === 'areas' && (
+                            <div className="pl-4 space-y-3">
+                                {areasWeServe.map((service, index) => (
+                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <Link to="/about" className="block text-[14px] font-bold text-[#475569] tracking-wider uppercase" onClick={() => setIsMenuOpen(false)}>
+                        ABOUT US
+                    </Link>
+
+                    <div className="pt-6 border-t border-slate-100 flex flex-col gap-4">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] font-bold text-[#b81c2f] tracking-[1px] uppercase">Emergency Line</span>
+                            <a href="tel:2147851130" className="text-[20px] font-extrabold text-[#081b4d]">214 785 1130</a>
+                        </div>
+                        <div className="bg-[#b81c2f] text-white py-4 rounded-lg font-bold text-center tracking-widest text-[14px] uppercase" onClick={() => setIsMenuOpen(false)}>
+                            EMERGENCY HELP
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };
