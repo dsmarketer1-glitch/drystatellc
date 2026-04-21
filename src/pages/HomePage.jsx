@@ -1,408 +1,445 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { 
+  Droplets, 
+  Flame, 
+  Wind, 
+  ChevronDown, 
+  MapPin, 
+  Clock, 
+  ShieldCheck, 
+  ArrowRight,
+  Phone,
+  Zap,
+  CheckCircle2
+} from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
-const imgAb6AXuB8M2DHftW5S9GGuIet9A9NuXbhp6JcscZj0KGqVwMTmW48RdO5G4805641LFabXAsTDaYE0B5KqkJIc5GbcZhj9INyeVDlmnK8ZmTUglffy6Srq2TRrHw3Qu7Lp5D9Qf4L0NSrS7Gs44Q6XnRLn6NyFnbHzof7I013Yxq0R1TGaS8FvpPaTXcSQUk3In91O052BRyMyWDCIgN8LDxwGrMzJeIDkxU6O4S6B5PcXgCmlwczfAfyv8ExBqLj8Lfnm54TsDy = "/assets/fc7ba96934c0a5c525a036b42f09cef957ca3d83.png";
+// Assets
+const imgHero = "/assets/hero-premium.png"; // Newly generated
 const imgCardWater = "/assets/3b4cecbe6d3f444260bd1a4ec474733a631752bd.png";
 const imgCardFire = "/assets/8d1a02761c159ddc7c66af1d44b5b9c6b73c2d64.png";
-const imgAb6AXuDBveyA3CCb6ZdqtiS6S9UbiIazLmeOsSMeDTxvKaUxSNcsYhAba2UCr4PQmSvZryHv3SdlXO2VuIfrGnEqGv159FzfFRFfuqqwLjBwVx5CkYhpMoDOdoeM8T48YTehg7WkkfJTOHtsjg8DKmSNeft9J5Jt8KFcv5PV6CCsj4Ho6AiY4N4H26WkYl0UlDjlZl7Ez2CnfQB4Tl0VcRcdnCx2WhOulhcYx6Mwe7FrunUAlDygJOdrimpSVi74MmqCbpU = "/assets/9ef0da8c8dca2aff508fb0a5e6bdf0b71edbe983.png";
-const imgAb6AXuDFiW0IMiX6B7EW9V4Q9Xuy78ZbOzphyQurjPnE4KybEAd22Yf7XGqcTcoiHiqUPdXj4KUimvXNVz4PufLa0Sebyo0QTjVn1BgbSHg6JGn49NMziMTsxXwgh0UzRAtCeszyxFSz56Sys8BgAbFgtWuBesKgUvWiKbvoKmQguhqTcoev7HAbsxj9WPey3EdKt9DOdhLp4GnLe20BmllwTjgK96BjCKfPjzzsuYTggGyfb3BqVApPo2ZpDnDiPydsE3KhA = "/assets/77e3b453581d8650c52a5b2c006f86e161d047b4.png";
-const imgAb6AXuDx7KcuSpQhOFtlUgBvyGtxnf5M0OkdxFc62GLFd5J3SCsxFuY79GWRuZhwDCeE4COaiur2GlEeE5T62KmVpCIdHdHhAnQwl2814I4QSd2G9AfKs17VXgY7LyEhLq6OWw2OX8BNg4Bin0XWiFg10L8ZIddD69UIvVQwZy9T3XmKhlwlilOkOEjmaMuvS93R3RCfgUxBsTdglQfse2LKoFljJmU1NzPr3Xxidhf02J6JU4ACj7W560HNccm8ClJwAlbGFrG = "/assets/f2f709722e2150b55d53da5ac55ca0861113e89f.png";
-const imgAb6AXuABe1Hdr6KZBq3Ch8XKQdM8VhF7ZjjcPtNckJcvAgAaE5ZT6I01GrQuD5CwlBpm9GkwzxgG1ZGt9Dt1LifU1DEXmLyYGa92XwIygk67HspHkqR49GRueVd6AbEb5TAcB8XjvS8JDgh6WyX7Gw9D8M5T5BbjZjBktKdxa6R1Z1EeyHs48XCoTmVnQbfFoUUz5BzExttNOktqqC6WCcmRk9Y9AchSpyb6NMxz7PJgzU1B1UxxyBi7NIrSriozknDmqwTv6Q = "/assets/5b04fbb0c56b68992a9741353b09eb6afe2b821f.png";
-const imgAb6AXuB012HpzKpTeOqNa4A5TGWl0X0RvKkAh01EliYIaVoigrcFe8R4WBuQpO5Yzof9HdTouUmZaCqHv44Zx3Exvre1Vf1UjejWnZvwqIoB5Lm95HTDd7QeIuVryZb9FxeikIoWwG6Uk5RvWdY3QTKeRnvi0EJojb4HTiQtxyJv7SC5ZXdLatMbfy4GtSHjrD0VbTtMm15LtIpMVg26Cue89MrsqMvyaOiMudwJqxaJgyZ3FmwedjmMm5GsHtFm3E8MHzmGc8Zok = "/assets/70ea2b5ae8c7047bbd1190c0c6506e4e39a9571c.png";
-const imgIcon = "/assets/8f136fdbb0fe6911b4d8b2ed6df9aa5281ae88e9.svg";
-const imgIcon1 = "/assets/79bf564654c5473995bcb6ac6fcd11fea129b91b.svg";
-const imgIcon2 = "/assets/1db6ed24f5add73d0c084682d505095da5b8ed03.svg";
-const imgContainer = "/assets/65a5f8ed61e79f86d9d22bd63cde33a9605b8f9f.svg";
-const imgContainer1 = "/assets/a1bdedb8e55fbc7e309c78ddd540ad69ee8e0105.svg";
-const imgIcon3 = "/assets/074751a19076fef87b2249539316d451e8b480d5.svg";
-const imgIcon4 = "/assets/1a1982fb2a687bc31f7fadb7b9d6db584203743c.svg";
-const imgIcon5 = "/assets/fad139bcf73143a5dc83ed4539a9b8b52e46292c.svg";
-const imgIcon6 = "/assets/60eca22096bfb1fd1f019ecc2e3458b671fae101.svg";
-const imgContainer2 = "/assets/227e8de0ec297259fc153d51caf8af5f24a6ebd7.svg";
-const imgContainer3 = "/assets/005ed49f91c45f00fadf5274404f7a971104cfaf.svg";
-const imgIcon7 = "/assets/ef74b27bad5b0ac472b7502ff0c515fd7d313c64.svg";
-const imgContainer4 = "/assets/6ef15f60ea964ff064dfc8a371d8b3163fa94e12.svg";
-const imgIcon8 = "/assets/be48f95537ba626ac36d6a166903d8c30adaea0f.svg";
-const imgContainer5 = "/assets/339011e3d3901e4315b1bb3986bd638433e41c91.svg";
+const imgCardMold = "/assets/9ef0da8c8dca2aff508fb0a5e6bdf0b71edbe983.png";
+const imgDfwMap = "/assets/77e3b453581d8650c52a5b2c006f86e161d047b4.png";
+const imgBlog1 = "/assets/f2f709722e2150b55d53da5ac55ca0861113e89f.png";
+const imgBlog2 = "/assets/5b04fbb0c56b68992a9741353b09eb6afe2b821f.png";
+const imgHelpBg = "/assets/70ea2b5ae8c7047bbd1190c0c6506e4e39a9571c.png";
 
-export default function DryStateExpertWaterDamageRestoration() {
+const fadeInUp = {
+  initial: { opacity: 0, y: 60 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.8, ease: "easeOut" }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+export default function HomePage() {
+  const [openFaq, setOpenFaq] = useState(null);
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(scrollYProgress, [0, 0.3], [0, 200]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.5]);
+
   return (
     <div className="bg-white min-h-screen flex flex-col pt-[92px]">
       <Header />
       
       <main className="flex-grow">
         {/* HERO SECTION */}
-        <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-[#faf8ff]">
-          <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <section className="relative min-h-screen flex items-center overflow-hidden bg-[#081b4d]">
+          <motion.div 
+            style={{ y: heroY, opacity: heroOpacity }}
+            className="absolute inset-0 z-0"
+          >
             <img 
-              src={imgAb6AXuB8M2DHftW5S9GGuIet9A9NuXbhp6JcscZj0KGqVwMTmW48RdO5G4805641LFabXAsTDaYE0B5KqkJIc5GbcZhj9INyeVDlmnK8ZmTUglffy6Srq2TRrHw3Qu7Lp5D9Qf4L0NSrS7Gs44Q6XnRLn6NyFnbHzof7I013Yxq0R1TGaS8FvpPaTXcSQUk3In91O052BRyMyWDCIgN8LDxwGrMzJeIDkxU6O4S6B5PcXgCmlwczfAfyv8ExBqLj8Lfnm54TsDy} 
+              src={imgHero} 
               className="w-full h-full object-cover" 
               alt="Hero Background"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#faf8ff] via-[#faf8ff]/80 to-transparent" />
-          </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#081b4d] via-[#081b4d]/40 to-transparent" />
+          </motion.div>
           
           <div className="container mx-auto px-6 relative z-10 py-20">
-            <div className="max-w-4xl space-y-8">
-               <div className="inline-flex items-center gap-3 bg-[#ebedff] border border-[#d6d9ff] px-4 py-2 rounded-full">
-                  <div className="w-2 h-2 rounded-full bg-[#b81c2f] animate-pulse" />
-                  <span className="text-[10px] font-bold text-[#45464f] tracking-widest uppercase">24/7 RESPONSE: DFW METROPLEX</span>
+            <motion.div 
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="max-w-4xl space-y-8"
+            >
+               <div className="inline-flex items-center gap-3 bg-[#b81c2f15] border border-[#b81c2f40] px-5 py-2.5 rounded-full backdrop-blur-md">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#b81c2f] animate-pulse" />
+                  <span className="text-[11px] font-black text-white tracking-[2.5px] uppercase">60 MINUTE RESPONSE: DFW</span>
                </div>
 
-               <h1 className="text-[#081b4d] text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[0.9] tracking-tighter">
-                  Rapid Water <br/>
-                  Damage <br/>
-                  <span className="text-[#b81c2f]">Recovery</span> for DFW.
+               <h1 className="text-white text-6xl md:text-8xl lg:text-9xl font-extrabold leading-[0.85] tracking-tighter">
+                  RESTORE <br/>
+                  EXCELLENCE <br/>
+                  <span className="text-[#b81c2f]">REFRESH</span> LIFE.
                </h1>
 
-               <p className="text-[#45464f] text-lg md:text-2xl max-w-2xl leading-relaxed font-light">
-                  When your property faces water damage, every minute counts. We provide expert cleanup and restoration to get your home or business back to normal fast.
+               <p className="text-[#8b9ad3] text-xl md:text-2xl max-w-2xl leading-relaxed font-medium">
+                  Elite water, fire, and mold restoration across the Dallas-Fort Worth Metroplex. Fast, professional, and guaranteed.
                </p>
 
-               <div className="flex flex-wrap gap-4 pt-4">
-                  <button className="bg-gradient-to-br from-[#081b4d] to-[#213163] text-white px-10 py-5 rounded-lg font-bold text-sm tracking-widest uppercase shadow-xl hover:scale-105 transition-transform">
+               <div className="flex flex-wrap gap-5 pt-4">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="bg-[#b81c2f] text-white px-10 py-5 rounded-xl font-black text-[13px] tracking-[2px] uppercase shadow-2xl shadow-red-900/40"
+                  >
                      Start Recovery Now
-                  </button>
-                  <button className="border border-[#c5c6d0]/50 text-[#081b4d] px-10 py-5 rounded-lg font-bold text-sm tracking-widest uppercase hover:bg-gray-50 transition-colors">
-                     See Our Process
-                  </button>
+                  </motion.button>
+                  <motion.button 
+                    whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
+                    whileTap={{ scale: 0.95 }}
+                    className="border-2 border-white/20 text-white px-10 py-5 rounded-xl font-black text-[13px] tracking-[2px] uppercase backdrop-blur-sm"
+                  >
+                     See Our Expertise
+                  </motion.button>
                </div>
-            </div>
+            </motion.div>
           </div>
+
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50"
+          >
+            <span className="text-[10px] font-black tracking-[4px] uppercase">Scroll</span>
+            <motion.div 
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="w-px h-12 bg-gradient-to-b from-white to-transparent" 
+            />
+          </motion.div>
         </section>
 
         {/* CORE SERVICES */}
-        <section className="py-24 bg-white">
+        <section className="py-32 bg-white relative">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-              <div className="lg:col-span-1 space-y-6 self-center">
-                <h2 className="text-[#081b4d] text-4xl md:text-5xl font-black leading-tight tracking-tight">Our Core <br/> Services</h2>
-                <p className="text-[#45464f] text-lg leading-relaxed">
-                  We provide complete restoration solutions for any emergency, handled with care and professional expertise.
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+              <motion.div 
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true }}
+                className="lg:col-span-4 space-y-8 flex flex-col justify-center"
+              >
+                <div className="space-y-4">
+                  <span className="text-[#b81c2f] text-[12px] font-black tracking-[4px] uppercase">OUR EXPERTISE</span>
+                  <h2 className="text-[#081b4d] text-5xl md:text-6xl font-black leading-tight tracking-tighter">Precision Restoration</h2>
+                </div>
+                <p className="text-[#45464f] text-lg leading-relaxed font-medium">
+                  We don't just clean; we restore. Using military-grade equipment and certified techniques to bring your property back to its pristine state.
                 </p>
-                <a href="#" className="inline-flex items-center gap-3 text-[#b81c2f] font-black text-sm tracking-widest uppercase hover:gap-5 transition-all">
-                  SEE ALL SERVICES
-                  <img src={imgContainer1} alt="Arrow" className="w-2" />
-                </a>
-              </div>
+                <motion.a 
+                  href="#" 
+                  whileHover={{ x: 10 }}
+                  className="inline-flex items-center gap-4 text-[#b81c2f] font-black text-sm tracking-[2px] uppercase"
+                >
+                  VIEW ALL CAPABILITIES
+                  <ArrowRight size={20} />
+                </motion.a>
+              </motion.div>
 
-              <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
-                  { title: "Water Damage", badge: "EMERGENCY HELP", img: imgCardWater },
-                  { title: "Fire & Smoke", badge: "FULL CLEANUP", img: imgCardFire },
-                  { title: "Mold Removal", badge: "HEALTH FOCUSED", img: imgAb6AXuDBveyA3CCb6ZdqtiS6S9UbiIazLmeOsSMeDTxvKaUxSNcsYhAba2UCr4PQmSvZryHv3SdlXO2VuIfrGnEqGv159FzfFRFfuqqwLjBwVx5CkYhpMoDOdoeM8T48YTehg7WkkfJTOHtsjg8DKmSNeft9J5Jt8KFcv5PV6CCsj4Ho6AiY4N4H26WkYl0UlDjlZl7Ez2CnfQB4Tl0VcRcdnCx2WhOulhcYx6Mwe7FrunUAlDygJOdrimpSVi74MmqCbpU }
+                  { title: "Water Damage", badge: "ELITE CLEANUP", img: imgCardWater, icon: Droplets },
+                  { title: "Fire & Smoke", badge: "COMPLETE RECOVERY", img: imgCardFire, icon: Flame },
+                  { title: "Mold Removal", badge: "BIO-TECH SAFETY", img: imgCardMold, icon: ShieldCheck }
                 ].map((service, idx) => (
-                  <div key={idx} className="group relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-                    <img src={service.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={service.title} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#081b4d] via-[#081b4d]/20 to-transparent" />
-                    <div className="absolute bottom-8 left-8 right-8 space-y-2">
-                       <span className="text-[10px] text-white/60 font-bold tracking-[2px] uppercase">{service.badge}</span>
-                       <h3 className="text-white text-3xl font-bold">{service.title}</h3>
+                  <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: idx * 0.2, duration: 0.6 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -15 }}
+                    className="group relative h-[550px] rounded-[32px] overflow-hidden shadow-2xl transition-all duration-500"
+                  >
+                    <img src={service.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt={service.title} />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#081b4d] via-[#081b4d]/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute bottom-10 left-10 right-10 space-y-4">
+                       <div className="w-14 h-14 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/20">
+                          <service.icon size={28} />
+                       </div>
+                       <div className="space-y-1">
+                          <span className="text-[10px] text-white/50 font-black tracking-[2.5px] uppercase">{service.badge}</span>
+                          <h3 className="text-white text-3xl font-black">{service.title}</h3>
+                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* PRECISION DRYING PROCESS */}
-        <section className="py-24 bg-[#f3f2ff]">
-          <div className="container mx-auto px-6 space-y-16">
-             <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-                <div className="max-w-xl space-y-4">
-                   <span className="text-[#b81c2f] text-[12px] font-black tracking-[4px] uppercase">HOW WE HELP YOU</span>
-                   <h2 className="text-[#081b4d] text-4xl md:text-5xl font-black tracking-tight">Our Precision Drying Process</h2>
-                </div>
-                <div className="border-l-2 border-[#b81c2f] pl-8 max-w-md italic text-[#45464f]">
-                   "We use professional tools and techniques to find hidden moisture and dry your property thoroughly, preventing long-term damage."
-                </div>
-             </div>
-
-             <div className="grid grid-cols-1 md:grid-cols-3 gap-1 bg-gray-100 rounded-2xl overflow-hidden border border-gray-100">
-               {[
-                 { title: "Advanced Drying", icon: imgIcon, desc: "Powerful dehumidifiers and air movers designed to remove moisture quickly and safely from all surfaces." },
-                 { title: "Safe Sanitization", icon: imgIcon1, desc: "Cleaning and disinfecting your space with EPA-approved solutions to ensure a healthy environment for your family." },
-                 { title: "Structural Care", icon: imgIcon2, desc: "Careful monitoring to protect your home's structure and ensure everything is restored to its pre-damage condition." }
-               ].map((step, idx) => (
-                 <div key={idx} className="bg-white p-12 space-y-6 hover:bg-[#faf8ff] transition-colors">
-                   <div className="w-12 h-12">
-                     <img src={step.icon} alt={step.title} className="w-full h-full object-contain" />
-                   </div>
-                   <h4 className="text-[#041749] text-2xl font-bold">{step.title}</h4>
-                   <p className="text-[#45464f] leading-relaxed">{step.desc}</p>
-                 </div>
-               ))}
-             </div>
-          </div>
+        {/* PARALLAX STATS / PROCESS */}
+        <section className="py-32 bg-[#081b4d] relative overflow-hidden">
+           <div className="container mx-auto px-6 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-center">
+                 {[
+                   { val: "24/7", label: "AVAILABILITY", icon: Clock },
+                   { val: "60m", label: "AVG RESPONSE", icon: Zap },
+                   { val: "100%", label: "CERTIFIED TEAMS", icon: ShieldCheck },
+                   { val: "1k+", label: "HOMES RESTORED", icon: CheckCircle2 }
+                 ].map((stat, idx) => (
+                   <motion.div 
+                    key={idx}
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: idx * 0.1, type: "spring" }}
+                    className="space-y-4"
+                   >
+                     <div className="w-16 h-16 mx-auto bg-white/5 rounded-full flex items-center justify-center text-[#ff535c]">
+                        <stat.icon size={32} />
+                     </div>
+                     <div className="text-white text-5xl font-black tracking-tighter">{stat.val}</div>
+                     <div className="text-[#8b9ad3] text-[11px] font-black tracking-[3px] uppercase">{stat.label}</div>
+                   </motion.div>
+                 ))}
+              </div>
+           </div>
         </section>
 
-        {/* SERVICE AREAS MAP */}
-        <section className="py-24 bg-[#081b4d] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-             <div className="w-full h-full bg-[radial-gradient(circle_at_center,rgba(96,165,250,0.5)_0%,transparent_70%)]" />
-          </div>
-          
+        {/* SERVICE AREAS - DYNAMIC MAP */}
+        <section className="py-32 bg-[#f8fafc] relative">
           <div className="container mx-auto px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-               <div className="space-y-10 relative z-10">
-                  <div className="space-y-4">
-                    <span className="text-[#ff535c] text-[12px] font-black tracking-[4px] uppercase">LOCAL DFW EXPERTS</span>
-                    <h2 className="text-white text-5xl md:text-6xl font-black tracking-tight">Serving the DFW <br/> Metroplex</h2>
-                    <p className="text-[#8b9ad3] text-lg md:text-xl font-normal leading-relaxed">
-                      We are located throughout the Dallas-Fort Worth area to ensure we can get to your property fast. Our teams are always ready to respond within 60 minutes of your call.
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+               <motion.div 
+                variants={fadeInUp}
+                initial="initial"
+                whileInView="whileInView"
+                viewport={{ once: true }}
+                className="space-y-12"
+               >
+                  <div className="space-y-6">
+                    <span className="text-[#b81c2f] text-[12px] font-black tracking-[4px] uppercase">LOCALLY ROOTTED</span>
+                    <h2 className="text-[#081b4d] text-6xl md:text-7xl font-black tracking-tight leading-none">
+                      Hyper-Local <br/> DFW Network.
+                    </h2>
+                    <p className="text-[#45464f] text-xl leading-relaxed max-w-xl">
+                       estrategically stationed across Richland Hills, Irving, and Dallas to ensure we're never more than 45 minutes away.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                      {[
-                       { name: "Richland Hills", tag: "CENTRAL SERVICE HUB", icon: imgIcon3 },
-                       { name: "Irving / Las Colinas", tag: "BUSINESS & RESIDENTIAL TEAM", icon: imgIcon4 },
-                       { name: "Dallas Proper", tag: "DOWNTOWN & CITYWIDE COVERAGE", icon: imgIcon5 },
-                       { name: "Fort Worth", tag: "WESTERN METRO RESPONSE", icon: imgIcon6 }
+                       { name: "Richland Hills", hub: "COMMAND CENTER", zips: "76118, 76180" },
+                       { name: "Irving Hub", hub: "LAS COLINAS UNIT", zips: "75038, 75063" },
+                       { name: "Dallas Metro", hub: "CITYWIDE DISPATCH", zips: "75201, 75219" },
+                       { name: "Fort Worth", hub: "WESTERN RESPONSE", zips: "76102, 76107" }
                      ].map((loc, idx) => (
-                       <div key={idx} className="flex gap-6 group">
-                          <img src={loc.icon} className="w-6 h-6 shrink-0 group-hover:scale-125 transition-transform" />
-                          <div className="space-y-1">
-                             <h4 className="text-white font-semibold text-lg">{loc.name}</h4>
-                             <span className="text-[#8b9ad3] text-[10px] font-bold tracking-widest uppercase leading-tight block">{loc.tag}</span>
+                       <motion.div 
+                        key={idx}
+                        whileHover={{ x: 10 }}
+                        className="flex gap-5 group cursor-default"
+                       >
+                          <div className="w-12 h-12 bg-white shadow-xl rounded-2xl flex items-center justify-center text-[#b81c2f] group-hover:bg-[#b81c2f] group-hover:text-white transition-all">
+                             <MapPin size={24} />
                           </div>
-                       </div>
+                          <div className="space-y-1">
+                             <h4 className="text-[#081b4d] font-black text-lg uppercase tracking-tight">{loc.name}</h4>
+                             <span className="text-[#757680] text-[10px] font-bold tracking-widest block uppercase">{loc.hub}</span>
+                          </div>
+                       </motion.div>
                      ))}
                   </div>
-               </div>
+               </motion.div>
 
-               <div className="relative">
-                  <div className="bg-[#0f172a] rounded-3xl border border-white/10 overflow-hidden shadow-2xl p-4">
-                     <div className="relative aspect-square md:aspect-video lg:aspect-square overflow-hidden rounded-2xl">
+               <motion.div 
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+                className="relative"
+               >
+                  <div className="bg-white rounded-[48px] p-6 shadow-[0_50px_100px_-20px_rgba(8,27,77,0.15)] border border-slate-100 overflow-hidden group">
+                     <div className="relative aspect-square rounded-[40px] overflow-hidden">
                         <img 
-                          src={imgAb6AXuDFiW0IMiX6B7EW9V4Q9Xuy78ZbOzphyQurjPnE4KybEAd22Yf7XGqcTcoiHiqUPdXj4KUimvXNVz4PufLa0Sebyo0QTjVn1BgbSHg6JGn49NMziMTsxXwgh0UzRAtCeszyxFSz56Sys8BgAbFgtWuBesKgUvWiKbvoKmQguhqTcoev7HAbsxj9WPey3EdKt9DOdhLp4GnLe20BmllwTjgK96BjCKfPjzzsuYTggGyfb3BqVApPo2ZpDnDiPydsE3KhA} 
-                          className="w-full h-full object-cover opacity-60" 
+                          src={imgDfwMap} 
+                          className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-2000" 
                           alt="DFW Map"
                         />
-                        <div className="absolute inset-0 bg-white mix-blend-saturation opacity-100" />
+                        <div className="absolute inset-0 bg-[#081b4d]/20 mix-blend-overlay" />
+                        
+                        <motion.div 
+                           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+                           transition={{ repeat: Infinity, duration: 4 }}
+                           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-[#b81c2f20] rounded-full blur-3xl pointer-events-none"
+                        />
+                        
                         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                           <div className="w-24 h-24 bg-[#b81c2f]/20 rounded-full animate-ping flex items-center justify-center">
-                              <img src={imgContainer2} className="w-6 h-6" />
+                           <div className="relative">
+                              <div className="w-6 h-6 bg-[#b81c2f] rounded-full border-4 border-white shadow-2xl relative z-10" />
+                              <div className="absolute inset-0 w-6 h-6 bg-[#b81c2f] rounded-full animate-ping" />
                            </div>
                         </div>
                      </div>
-                     <div className="absolute bottom-10 right-10 backdrop-blur-md bg-black/40 border border-white/10 p-5 rounded-xl">
-                        <span className="text-3xl font-black text-white block">48.2m</span>
-                        <span className="text-[#8b9ad3] text-[10px] font-bold uppercase tracking-widest">AVERAGE ARRIVAL TIME</span>
+                     <div className="absolute bottom-12 right-12 bg-[#081b4d] text-white p-6 rounded-3xl shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500 origin-bottom-right">
+                        <div className="text-3xl font-black">48.2m</div>
+                        <div className="text-[10px] font-black tracking-widest uppercase opacity-50">AVG ARRIVAL</div>
                      </div>
                   </div>
-               </div>
+               </motion.div>
             </div>
           </div>
         </section>
 
-        {/* RECOVERY TIMELINE */}
-        <section className="py-24 bg-[#faf8ff]">
-          <div className="container mx-auto px-6 max-w-screen-lg space-y-20">
-             <div className="text-center space-y-6">
-                <h2 className="text-[#081b4d] text-4xl md:text-5xl font-black tracking-tight">Your 60-Minute Recovery Plan</h2>
-                <p className="text-[#45464f] text-lg max-w-2xl mx-auto">
-                   From the moment you call, we follow a proven plan to stop the damage and start restoring your property immediately.
-                </p>
-             </div>
+        {/* FAQS - ACCORDION */}
+        <section className="py-32 bg-white relative">
+          <div className="container mx-auto px-6 max-w-4xl">
+            <motion.div 
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="whileInView"
+              className="text-center space-y-6 mb-20"
+            >
+               <span className="text-[#b81c2f] text-[12px] font-black tracking-[4px] uppercase">KNOWLEDGE CENTER</span>
+               <h2 className="text-[#081b4d] text-5xl md:text-7xl font-black tracking-tight">Expert Advice.</h2>
+            </motion.div>
 
-             <div className="relative space-y-24">
-                <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gray-200 hidden md:block" />
-                
-                {[
-                  { 
-                    time: "0 Minutes: We Dispatch", 
-                    desc: "Your call is answered 24/7. We instantly send the closest local team to your address.", 
-                    num: "01", 
-                    accent: "border-[#b81c2f]",
-                    img: imgContainer3
-                  },
-                  { 
-                    time: "15 Minutes: On the Way", 
-                    desc: "Our expert technicians are en route with industrial water extraction and drying equipment.", 
-                    num: "02", 
-                    accent: "border-[#081b4d]"
-                  },
-                  { 
-                    time: "45 Minutes: On Site", 
-                    desc: "We arrive and begin a thorough assessment. We'll show you exactly where the water is and how we'll fix it.", 
-                    num: "03", 
-                    accent: "border-[#081b4d]",
-                    img: imgContainer4
-                  },
-                  { 
-                    time: "Damage Contained", 
-                    desc: "Water is being removed, drying has begun, and your property is secured from further damage.", 
-                    num: "60", 
-                    accent: "bg-[#b81c2f] text-white border-transparent"
-                  }
-                ].map((step, idx) => (
-                  <div key={idx} className={`flex flex-col md:flex-row items-center gap-12 ${idx % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-                    <div className={`flex-1 space-y-4 ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
-                       <h4 className="text-[#081b4d] text-2xl font-black">{step.time}</h4>
-                       <p className="text-[#45464f] leading-relaxed">{step.desc}</p>
-                    </div>
-                    
-                    <div className={`z-10 w-16 h-16 rounded-2xl border-4 bg-white flex items-center justify-center font-black text-xl shadow-xl ${step.accent}`}>
-                       {step.num}
-                    </div>
-
-                    <div className="flex-1 hidden md:block">
-                       {step.img && <img src={step.img} className="max-w-[150px] mx-auto opacity-30" />}
-                    </div>
-                  </div>
-                ))}
-             </div>
-          </div>
-        </section>
-
-        {/* TRUST & INSIGHTS */}
-        <section className="py-24 bg-[#ebedff]">
-          <div className="container mx-auto px-6">
-             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                <div className="lg:col-span-4 space-y-10">
-                   <h2 className="text-[#081b4d] text-4xl font-black">Expert Certifications</h2>
-                   <div className="space-y-6">
-                      {[
-                        { name: "IICRC", sub: "PROFESSIONAL STANDARDS", label: "Certified Restoration", color: "bg-[#eff6ff] text-[#081b4d]" },
-                        { name: "OSHA", sub: "TRAINED & SECURE TEAMS", label: "Safety First", color: "bg-[#fef2f2] text-[#b81c2f]" },
-                        { name: "EPA", sub: "ECO-FRIENDLY PROTOCOLS", label: "Clean & Safe", color: "bg-[#f0fdfa] text-[#115e59]" }
-                      ].map((cert, idx) => (
-                        <div key={idx} className="bg-white p-6 rounded-xl flex items-center gap-6 shadow-sm">
-                           <div className={`w-16 h-16 rounded-lg flex items-center justify-center font-bold text-xs ${cert.color}`}>
-                              {cert.name}
-                           </div>
-                           <div>
-                              <h4 className="text-[#081b4d] font-bold">{cert.label}</h4>
-                              <span className="text-[#45464f] text-[10px] font-bold tracking-widest uppercase">{cert.sub}</span>
-                           </div>
-                        </div>
-                      ))}
-                   </div>
-                </div>
-
-                <div className="lg:col-span-8 space-y-10">
-                   <div className="flex justify-between items-end">
-                      <h2 className="text-[#081b4d] text-4xl font-black">Expert Insights</h2>
-                      <a href="#" className="text-[#b81c2f] font-black text-sm tracking-widest uppercase border-b-2 border-[#b81c2f]">MORE HELP</a>
-                   </div>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      {[
-                        { title: "Important Tips for Water Damage", cat: "EXPERT GUIDE", desc: "What you should do immediately after a leak or flood to minimize damage to your belongings.", img: imgAb6AXuDx7KcuSpQhOFtlUgBvyGtxnf5M0OkdxFc62GLFd5J3SCsxFuY79GWRuZhwDCeE4COaiur2GlEeE5T62KmVpCIdHdHhAnQwl2814I4QSd2G9AfKs17VXgY7LyEhLq6OWw2OX8BNg4Bin0XWiFg10L8ZIddD69UIvVQwZy9T3XmKhlwlilOkOEjmaMuvS93R3RCfgUxBsTdglQfse2LKoFljJmU1NzPr3Xxidhf02J6JU4ACj7W560HNccm8ClJwAlbGFrG },
-                        { title: "How to Handle Flood Insurance", cat: "INSURANCE HELP", desc: "A simple guide to navigating insurance claims and getting the most from your coverage after a flood.", img: imgAb6AXuABe1Hdr6KZBq3Ch8XKQdM8VhF7ZjjcPtNckJcvAgAaE5ZT6I01GrQuD5CwlBpm9GkwzxgG1ZGt9Dt1LifU1DEXmLyYGa92XwIygk67HspHkqR49GRueVd6AbEb5TAcB8XjvS8JDgh6WyX7Gw9D8M5T5BbjZjBktKdxa6R1Z1EeyHs48XCoTmVnQbfFoUUz5BzExttNOktqqC6WCcmRk9Y9AchSpyb6NMxz7PJgzU1B1UxxyBi7NIrSriozknDmqwTv6Q }
-                      ].map((post, idx) => (
-                        <div key={idx} className="space-y-6 group">
-                           <div className="aspect-video rounded-2xl overflow-hidden">
-                              <img src={post.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={post.title} />
-                           </div>
-                           <div className="space-y-3">
-                              <span className="text-[#b81c2f] text-[10px] font-black tracking-widest uppercase">{post.cat}</span>
-                              <h4 className="text-[#081b4d] text-2xl font-bold">{post.title}</h4>
-                              <p className="text-[#45464f] text-sm leading-relaxed">{post.desc}</p>
-                           </div>
-                        </div>
-                      ))}
-                   </div>
-                </div>
-             </div>
-          </div>
-        </section>
-
-        {/* FAQS */}
-        <section className="py-24 bg-white">
-          <div className="container mx-auto px-6 max-w-4xl space-y-12">
-            <div className="text-center space-y-4">
-               <span className="text-[#b81c2f] text-[12px] font-black tracking-[4px] uppercase">COMMON QUESTIONS</span>
-               <h2 className="text-[#081b4d] text-4xl md:text-6xl font-black tracking-tight">Frequently Asked Questions</h2>
-            </div>
-
-            <div className="space-y-4">
+            <div className="space-y-6">
                {[
-                 { q: "How soon can you arrive at my property?", a: "We pride ourselves on our rapid response. With teams located throughout the DFW Metroplex, we aim to be at your doorstep within 60 minutes of your call, 24 hours a day, 7 days a week." },
-                 { q: "Will you work with my insurance company?", a: "Yes, we handle the entire claims process for you. We provide high-fidelity documentation and direct billing to all major insurance carriers in Texas." },
-                 { q: "Is it safe to stay in my home during the drying process?", a: "In most cases yes, though our industrial equipment can be noisy. Our technicians will assess the safety based on the extent of the damage (e.g. category of water)." }
+                 { q: "How soon can you arrive at my property?", a: "We guarantee a response within 60 minutes. Our tactical dispatch system identifies the closest technician to your location across DFW for immediate intervention." },
+                 { q: "Will you work with my insurance company?", a: "Precisely. We handle 100% of the insurance documentation, providing high-fidelity digital reports directly to adjusters to ensure your claim is processed with zero friction." },
+                 { q: "What should I do immediately after water damage?", a: "First, prioritize safety: shut off power if needed and isolate the water source. Call us immediately. Avoid using home vacuums; our industrial extractors are required to prevent deep-set mold." }
                ].map((faq, idx) => (
-                 <div key={idx} className="bg-[#f3f2ff] p-8 rounded-xl border border-blue-50">
-                    <div className="flex justify-between items-center gap-4">
-                       <h4 className="text-[#081b4d] text-xl font-bold">{faq.q}</h4>
-                       <img src={imgContainer} className="w-3 shrink-0" alt="Expand" />
-                    </div>
-                    <div className="mt-6 pt-6 border-t border-gray-200">
-                       <p className="text-[#45464f] leading-relaxed">{faq.a}</p>
-                    </div>
-                 </div>
+                 <motion.div 
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  className={`rounded-2xl border transition-all duration-300 ${openFaq === idx ? 'bg-[#f3f2ff] border-[#081b4d20]' : 'bg-white border-slate-100'}`}
+                 >
+                    <button 
+                      onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                      className="w-full p-8 flex justify-between items-center text-left"
+                    >
+                       <h4 className="text-[#081b4d] text-xl font-black tracking-tight pr-8">{faq.q}</h4>
+                       <motion.div 
+                        animate={{ rotate: openFaq === idx ? 180 : 0 }}
+                        className="text-[#b81c2f] shrink-0"
+                       >
+                          <ChevronDown size={28} />
+                       </motion.div>
+                    </button>
+                    
+                    <AnimatePresence>
+                       {openFaq === idx && (
+                         <motion.div 
+                           initial={{ height: 0, opacity: 0 }}
+                           animate={{ height: "auto", opacity: 1 }}
+                           exit={{ height: 0, opacity: 0 }}
+                           className="overflow-hidden"
+                         >
+                            <div className="px-8 pb-8 pt-0">
+                               <div className="h-px bg-slate-200 mb-6" />
+                               <p className="text-[#45464f] text-lg leading-relaxed font-medium">
+                                  {faq.a}
+                                </p>
+                            </div>
+                         </motion.div>
+                       )}
+                    </AnimatePresence>
+                 </motion.div>
                ))}
             </div>
           </div>
         </section>
 
         {/* EMERGENCY HELP PORTAL */}
-        <section className="py-24 bg-[#faf8ff] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-5 pointer-events-none">
-             <img src={imgAb6AXuB012HpzKpTeOqNa4A5TGWl0X0RvKkAh01EliYIaVoigrcFe8R4WBuQpO5Yzof9HdTouUmZaCqHv44Zx3Exvre1Vf1UjejWnZvwqIoB5Lm95HTDd7QeIuVryZb9FxeikIoWwG6Uk5RvWdY3QTKeRnvi0EJojb4HTiQtxyJv7SC5ZXdLatMbfy4GtSHjrD0VbTtMm15LtIpMVg26Cue89MrsqMvyaOiMudwJqxaJgyZ3FmwedjmMm5GsHtFm3E8MHzmGc8Zok} className="w-full h-full object-cover" alt="Background" />
-          </div>
-          
+        <section className="py-32 bg-[#faf8ff] relative overflow-hidden">
           <div className="container mx-auto px-6 max-w-screen-xl relative z-10">
-             <div className="bg-white rounded-[40px] flex flex-col lg:flex-row overflow-hidden shadow-2xl border border-gray-100">
-                <div className="bg-[#081b4d] text-white p-12 md:p-20 lg:w-5/12 flex flex-col justify-between gap-20">
-                   <div className="space-y-6">
-                      <h2 className="text-5xl font-black tracking-tighter">Request Help Now</h2>
-                      <p className="text-[#8b9ad3] text-lg leading-relaxed">
-                        Fill out this quick form and our local team will be notified immediately to help with your water, fire, or mold emergency.
+             <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="bg-white rounded-[60px] flex flex-col lg:flex-row overflow-hidden shadow-[0_100px_150px_-50px_rgba(8,27,77,0.25)] border border-slate-100"
+             >
+                <div className="bg-[#081b4d] text-white p-12 md:p-24 lg:w-5/12 flex flex-col justify-between gap-20">
+                   <div className="space-y-8">
+                      <h2 className="text-6xl font-black tracking-tighter leading-none">Request <br/> Elite Help.</h2>
+                      <p className="text-[#8b9ad3] text-xl leading-relaxed">
+                        Rapid-response restoration for high-value properties. Fill in the secure portal for immediate technical dispatch.
                       </p>
-                      <ul className="space-y-4">
+                      <ul className="space-y-6">
                          {[
-                           "60-Minute Rapid Response",
-                           "Professional & Certified Help",
-                           "Direct Billing to Insurance"
+                           "Direct Insurance Integration",
+                           "Certified Technical Experts",
+                           "Advanced Drying Technologies"
                          ].map((item, idx) => (
-                           <li key={idx} className="flex items-center gap-4 text-sm font-semibold">
-                              <img src={imgContainer5} className="w-5 h-5" alt="Check" />
+                           <motion.li 
+                            key={idx} 
+                            initial={{ x: -20, opacity: 0 }}
+                            whileInView={{ x: 0, opacity: 1 }}
+                            transition={{ delay: 0.5 + idx * 0.1 }}
+                            className="flex items-center gap-5 text-sm font-black tracking-widest uppercase"
+                           >
+                              <div className="w-6 h-6 bg-[#b81c2f] rounded-lg flex items-center justify-center">
+                                 <CheckCircle2 size={14} className="text-white" />
+                              </div>
                               {item}
-                           </li>
+                           </motion.li>
                          ))}
                       </ul>
                    </div>
 
-                   <div className="pt-10 border-t border-white/10 space-y-2">
-                       <span className="text-[#8b9ad3] text-[10px] font-bold tracking-widest uppercase">EMERGENCY HOTLINE</span>
-                       <div className="text-4xl font-extrabold tracking-tight">214 785 1130</div>
+                   <div className="pt-12 border-t border-white/10 space-y-4">
+                       <span className="text-[#8b9ad3] text-[11px] font-black tracking-[4px] uppercase block">CRITICAL HOTLINE</span>
+                       <div className="text-5xl font-black tracking-tighter text-[#ff535c] hover:scale-105 transition-transform cursor-pointer">
+                          214 785 1130
+                       </div>
                    </div>
                 </div>
 
-                <div className="p-12 md:p-20 lg:w-7/12 bg-white">
-                   <form className="space-y-6">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                         <div className="space-y-2">
-                            <label className="text-[10px] font-black text-[#081b4d] tracking-widest uppercase">FULL NAME</label>
-                            <input type="text" placeholder="John Doe" className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#b81c2f] p-5 rounded-xl outline-none transition-all" />
+                <div className="p-12 md:p-24 lg:w-7/12 bg-white">
+                   <form className="space-y-8">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                         <div className="space-y-3">
+                            <label className="text-[11px] font-black text-[#081b4d] tracking-[3px] uppercase">IDENTITY</label>
+                            <input type="text" placeholder="Your Name" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#b81c2f] focus:bg-white p-6 rounded-2xl outline-none transition-all font-bold" />
                          </div>
-                         <div className="space-y-2">
-                            <label className="text-[10px] font-black text-[#081b4d] tracking-widest uppercase">PHONE NUMBER</label>
-                            <input type="text" placeholder="(214) 000-0000" className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#b81c2f] p-5 rounded-xl outline-none transition-all" />
+                         <div className="space-y-3">
+                            <label className="text-[11px] font-black text-[#081b4d] tracking-[3px] uppercase">SECURE PHONE</label>
+                            <input type="text" placeholder="(214) 000-0000" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#b81c2f] focus:bg-white p-6 rounded-2xl outline-none transition-all font-bold" />
                          </div>
                       </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-[#081b4d] tracking-widest uppercase">PROPERTY ADDRESS</label>
-                         <input type="text" placeholder="Enter address here" className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#b81c2f] p-5 rounded-xl outline-none transition-all" />
+                      <div className="space-y-3">
+                         <label className="text-[11px] font-black text-[#081b4d] tracking-[3px] uppercase">SERVICE LOCATION</label>
+                         <input type="text" placeholder="Street Address, City" className="w-full bg-slate-50 border-2 border-transparent focus:border-[#b81c2f] focus:bg-white p-6 rounded-2xl outline-none transition-all font-bold" />
                       </div>
-                      <div className="space-y-2">
-                         <label className="text-[10px] font-black text-[#081b4d] tracking-widest uppercase">DAMAGE TYPE</label>
-                         <select className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#b81c2f] p-5 rounded-xl outline-none transition-all appearance-none">
-                            <option>Water Damage</option>
-                            <option>Mold Issue</option>
-                            <option>Fire / Smoke</option>
-                            <option>Storm Damage</option>
-                         </select>
+                      <div className="space-y-3">
+                         <label className="text-[11px] font-black text-[#081b4d] tracking-[3px] uppercase">URGENCY TYPE</label>
+                         <div className="relative">
+                            <select className="w-full bg-slate-50 border-2 border-transparent focus:border-[#b81c2f] focus:bg-white p-6 rounded-2xl outline-none transition-all appearance-none font-bold">
+                               <option>Active Water Damage</option>
+                               <option>Fire/Smoke Crisis</option>
+                               <option>Mold Contamination</option>
+                               <option>Post-Storm Recovery</option>
+                            </select>
+                            <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={24} />
+                         </div>
                       </div>
-                      <button className="w-full bg-[#b81c2f] hover:bg-[#a11828] text-white py-6 rounded-xl font-bold text-xl tracking-wide shadow-xl shadow-[#b81c2f]/20 transition-all hover:scale-[1.02]">
-                         Initiate Recovery
-                      </button>
+                      <motion.button 
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-[#b81c2f] hover:bg-[#a11828] text-white py-8 rounded-2xl font-black text-xl tracking-[4px] uppercase shadow-2xl shadow-red-900/20 transition-all"
+                      >
+                         INITIATE DISPATCH
+                      </motion.button>
                    </form>
                 </div>
-             </div>
+             </motion.div>
           </div>
         </section>
       </main>

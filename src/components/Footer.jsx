@@ -75,14 +75,14 @@ const Footer = () => {
                             </div>
                         </div>
                         <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 w-full" data-node-id="1:370" data-name="List">
-                            <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
+                            <Link to="/arlington-all-dfw-metroplex" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
                                 <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] hover:text-[#b81c2f] transition-colors text-[12px] w-full">
-                                    <p className="leading-[16px]">DFW Locations</p>
+                                    <p className="leading-[16px]">Arlington Service Area</p>
                                 </div>
                             </Link>
-                            <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
+                            <Link to="/about" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
                                 <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] hover:text-[#b81c2f] transition-colors text-[12px] w-full">
-                                    <p className="leading-[16px]">Water Damage Tips</p>
+                                    <p className="leading-[16px]">About DryState</p>
                                 </div>
                             </Link>
                             <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
@@ -92,7 +92,7 @@ const Footer = () => {
                             </Link>
                             <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0 w-full">
                                 <div className="flex flex-col font-['Public_Sans:Regular',sans-serif] font-normal justify-center leading-[0] relative shrink-0 text-[#64748b] hover:text-[#b81c2f] transition-colors text-[12px] w-full">
-                                    <p className="leading-[16px]">Insurance Help</p>
+                                    <p className="leading-[16px]">Terms of Service</p>
                                 </div>
                             </Link>
                         </div>

@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-const imgButton = "/assets/e4b2731a68bc6a772c595be2337564fbb1724fcf.svg";
+import { motion, AnimatePresence } from 'framer-motion';
+import { Phone, Menu, X, ChevronDown } from 'lucide-react';
 
 const Header = () => {
     const [openDropdown, setOpenDropdown] = useState(null);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const restorationServices = [
         { name: "Content Cleaning and Packing", path: "/content-cleaning-and-packing" },
@@ -29,221 +38,190 @@ const Header = () => {
     ];
 
     const areasWeServe = [
-        { name: "Richland Hills & All DFW Metroplex", path: "/" },
-        { name: "Arlington & All DFW Metroplex", path: "/arlington-all-dfw-metroplex" },
+        { name: "Richland Hills & All DFW", path: "/" },
+        { name: "Arlington & All DFW", path: "/arlington-all-dfw-metroplex" },
     ];
-
-    const handleMouseEnter = (menu) => {
-        if (window.innerWidth >= 1024) {
-            setOpenDropdown(menu);
-        }
-    };
-
-    const handleMouseLeave = () => {
-        if (window.innerWidth >= 1024) {
-            setOpenDropdown(null);
-        }
-    };
 
     const toggleDropdown = (menu) => {
         setOpenDropdown(openDropdown === menu ? null : menu);
     };
 
     return (
-        <div className="fixed backdrop-blur-[12px] bg-[rgba(248,250,252,0.95)] flex flex-col items-start left-0 shadow-lg top-0 w-full items-center z-[100] transition-all duration-300" data-node-id="1:389" data-name="Header - Top Navigation">
-            <div className="content-stretch flex items-center justify-between max-w-[1536px] mx-auto pl-[32px] pr-[32.02px] py-[16px] relative shrink-0 w-full" data-node-id="1:390" data-name="Container">
-                <Link to="/" className="content-stretch flex flex-col items-start relative shrink-0" data-node-id="1:391" data-name="Link">
-                    <div className="flex flex-col justify-center leading-[0] relative shrink-0 whitespace-nowrap" data-node-id="1:392">
-                        <img src="/assets/logo.png" alt="DryState Logo" className="w-auto max-w-[200px] md:max-w-[300px] h-[40px] md:h-[60px] object-contain object-left transform md:scale-[1.8] md:translate-x-8 origin-left transition-all duration-300" />
-                    </div>
+        <header 
+            className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+                scrolled 
+                ? 'bg-white/95 backdrop-blur-md shadow-lg py-2' 
+                : 'bg-white/80 backdrop-blur-sm py-4'
+            }`}
+        >
+            <nav className="container mx-auto px-4 md:px-8 flex items-center justify-between">
+                {/* Logo Section */}
+                <Link to="/" className="relative z-[110] flex items-center group">
+                    <img 
+                        src="/assets/logo.png" 
+                        alt="DryState Logo" 
+                        className={`transition-all duration-500 object-contain object-left ${
+                            scrolled ? 'h-[60px] md:h-[80px]' : 'h-[75px] md:h-[100px]'
+                        } w-auto`}
+                    />
                 </Link>
 
-                {/* Mobile Menu Toggle */}
-                <button 
-                    className="lg:hidden p-2 text-[#081b4d]"
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                >
-                    <div className="w-6 h-0.5 bg-current mb-1.5 transition-all"></div>
-                    <div className="w-6 h-0.5 bg-current mb-1.5 transition-all"></div>
-                    <div className="w-6 h-0.5 bg-current transition-all"></div>
-                </button>
-
-                {/* Navigation - Desktop */}
-                <div className="hidden lg:flex items-center relative shrink-0 h-full" data-node-id="1:393" data-name="Nav">
-                    {/* Restoration Services Dropdown */}
-                    <div 
-                        className="relative group h-full flex flex-col justify-center"
-                        onMouseEnter={() => handleMouseEnter('restoration')}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div className="cursor-pointer border-transparent hover:border-[#1e3a8a] border-b-2 border-solid content-stretch flex flex-col items-start pb-[6px] relative shrink-0 transition-all duration-200">
-                            <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#1e3a8a] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap">
-                                <p className="leading-[16px]">RESTORATION SERVICES</p>
-                            </div>
-                        </div>
-                        {openDropdown === 'restoration' && (
-                            <div className="absolute top-full left-0 bg-white shadow-xl rounded-lg py-4 w-64 border border-slate-100 animate-in fade-in slide-in-from-top-2 duration-200">
-                                {restorationServices.map((service, index) => (
-                                    <Link 
-                                        key={index} 
-                                        to={service.path}
-                                        className="block px-6 py-2 text-[13px] font-medium text-slate-600 hover:text-[#b81c2f] hover:bg-slate-50 transition-colors"
+                {/* Desktop Navigation */}
+                <div className="hidden lg:flex items-center gap-8">
+                    {[
+                        { label: 'Restoration', items: restorationServices, id: 'restoration' },
+                        { label: 'Cleaning', items: cleaningServices, id: 'cleaning' },
+                        { label: 'Areas We Serve', items: areasWeServe, id: 'areas' }
+                    ].map((menu) => (
+                        <div 
+                            key={menu.id}
+                            className="relative"
+                            onMouseEnter={() => setOpenDropdown(menu.id)}
+                            onMouseLeave={() => setOpenDropdown(null)}
+                        >
+                            <button className="flex items-center gap-1 text-[11px] font-black tracking-[1.5px] uppercase text-[#081b4d] hover:text-[#b81c2f] transition-colors py-4">
+                                {menu.label}
+                                <ChevronDown size={14} className={`transition-transform duration-300 ${openDropdown === menu.id ? 'rotate-180' : ''}`} />
+                            </button>
+                            
+                            <AnimatePresence>
+                                {openDropdown === menu.id && (
+                                    <motion.div 
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className="absolute top-full left-0 bg-white shadow-2xl rounded-xl py-4 w-64 border border-slate-100 overflow-hidden"
                                     >
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Cleaning Services Dropdown */}
-                    <div 
-                        className="relative group h-full flex flex-col justify-center pl-[32px]"
-                        onMouseEnter={() => handleMouseEnter('cleaning')}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div className="cursor-pointer border-transparent hover:border-[#1e3a8a] border-b-2 border-solid content-stretch flex flex-col items-start pb-[6px] relative shrink-0 transition-all duration-200">
-                            <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#475569] hover:text-[#1e3a8a] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap">
-                                <p className="leading-[16px]">CLEANING SERVICES</p>
-                            </div>
+                                        <div className="max-h-[60vh] overflow-y-auto custom-scrollbar">
+                                            {menu.items.map((item, idx) => (
+                                                <Link 
+                                                    key={idx} 
+                                                    to={item.path}
+                                                    className="block px-6 py-2.5 text-[13px] font-medium text-slate-600 hover:text-white hover:bg-[#b81c2f] transition-all"
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
                         </div>
-                        {openDropdown === 'cleaning' && (
-                            <div className="absolute top-full left-[32px] bg-white shadow-xl rounded-lg py-4 w-64 border border-slate-100 animate-in fade-in slide-in-from-top-2 duration-200">
-                                {cleaningServices.map((service, index) => (
-                                    <Link 
-                                        key={index} 
-                                        to={service.path}
-                                        className="block px-6 py-2 text-[13px] font-medium text-slate-600 hover:text-[#b81c2f] hover:bg-slate-50 transition-colors"
-                                    >
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Areas We Serve Dropdown */}
-                    <div 
-                        className="relative group h-full flex flex-col justify-center pl-[32px]"
-                        onMouseEnter={() => handleMouseEnter('areas')}
-                        onMouseLeave={handleMouseLeave}
-                    >
-                        <div className="cursor-pointer border-transparent hover:border-[#1e3a8a] border-b-2 border-solid content-stretch flex flex-col items-start pb-[6px] relative shrink-0 transition-all duration-200">
-                            <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#475569] hover:text-[#1e3a8a] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap">
-                                <p className="leading-[16px]">AREAS WE SERVE</p>
-                            </div>
-                        </div>
-                        {openDropdown === 'areas' && (
-                            <div className="absolute top-full left-[32px] bg-white shadow-xl rounded-lg py-4 w-72 border border-slate-100 animate-in fade-in slide-in-from-top-2 duration-200">
-                                {areasWeServe.map((service, index) => (
-                                    <Link 
-                                        key={index} 
-                                        to={service.path}
-                                        className="block px-6 py-2 text-[13px] font-medium text-slate-600 hover:text-[#b81c2f] hover:bg-slate-50 transition-colors"
-                                    >
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-
-                    <Link to="/about" className="content-stretch flex flex-col items-start pl-[32px] relative shrink-0" data-node-id="1:402" data-name="Link:margin">
-                        <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[#475569] hover:text-[#1e3a8a] text-[12px] tracking-[1.2px] uppercase whitespace-nowrap">
-                            <p className="leading-[16px]">ABOUT US</p>
-                        </div>
+                    ))}
+                    
+                    <Link to="/about" className="text-[11px] font-black tracking-[1.5px] uppercase text-[#081b4d] hover:text-[#b81c2f] transition-colors">
+                        About Us
                     </Link>
                 </div>
 
-                <div className="hidden lg:flex gap-[24px] items-center relative shrink-0" data-node-id="1:404" data-name="Container">
-                    <div className="flex flex-col items-end">
-                        <span className="text-[10px] font-bold text-[#b81c2f] tracking-[1px] uppercase">Emergency Line</span>
-                        <a href="tel:2147851130" className="text-[18px] font-bold text-[#081b4d] hover:text-[#b81c2f] transition-colors">214 785 1130</a>
-                    </div>
-                    <div className="bg-[#081b4d] hover:bg-[#b81c2f] cursor-pointer transition-all duration-300 content-stretch flex flex-col items-center justify-center px-[24px] py-[12px] relative rounded-[6px] shrink-0 shadow-lg shadow-blue-900/20" data-node-id="1:407" data-name="Button">
-                        <div className="flex flex-col font-['Public_Sans:Bold',sans-serif] font-bold justify-center leading-[0] relative shrink-0 text-[12px] text-center text-white tracking-[1.2px] uppercase whitespace-nowrap" data-node-id="1:408">
-                            <p className="leading-[16px]">EMERGENCY HELP</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Mobile Navigation Menu */}
-            {isMenuOpen && (
-                <div className="lg:hidden w-full bg-white border-t border-slate-100 py-6 px-8 space-y-6 animate-in slide-in-from-top duration-300">
-                    <div className="space-y-4">
-                        <button 
-                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#1e3a8a] tracking-wider uppercase"
-                            onClick={() => toggleDropdown('restoration')}
-                        >
-                            RESTORATION SERVICES
-                            <span>{openDropdown === 'restoration' ? '−' : '+'}</span>
-                        </button>
-                        {openDropdown === 'restoration' && (
-                            <div className="pl-4 space-y-3">
-                                {restorationServices.map((service, index) => (
-                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
+                {/* Right Side Actions */}
+                <div className="flex items-center gap-4 relative z-[110]">
+                    <div className="hidden xl:flex flex-col items-end mr-4">
+                        <span className="text-[9px] font-black text-[#b81c2f] tracking-[1px] uppercase">Emergency Response</span>
+                        <a href="tel:2147851130" className="text-[17px] font-black text-[#081b4d]">214 785 1130</a>
                     </div>
 
-                    <div className="space-y-4">
-                        <button 
-                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#475569] tracking-wider uppercase"
-                            onClick={() => toggleDropdown('cleaning')}
-                        >
-                            CLEANING SERVICES
-                            <span>{openDropdown === 'cleaning' ? '−' : '+'}</span>
-                        </button>
-                        {openDropdown === 'cleaning' && (
-                            <div className="pl-4 space-y-3">
-                                {cleaningServices.map((service, index) => (
-                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <a 
+                        href="tel:2147851130"
+                        className="flex lg:hidden items-center gap-2 bg-[#b81c2f] text-white px-4 py-2.5 rounded-full font-black text-[12px] tracking-wider shadow-lg shadow-red-500/20 active:scale-95 transition-all"
+                    >
+                        <Phone size={14} fill="currentColor" />
+                        CALL NOW
+                    </a>
 
-                    <div className="space-y-4">
-                        <button 
-                            className="flex items-center justify-between w-full text-[14px] font-bold text-[#475569] tracking-wider uppercase"
-                            onClick={() => toggleDropdown('areas')}
-                        >
-                            AREAS WE SERVE
-                            <span>{openDropdown === 'areas' ? '−' : '+'}</span>
-                        </button>
-                        {openDropdown === 'areas' && (
-                            <div className="pl-4 space-y-3">
-                                {areasWeServe.map((service, index) => (
-                                    <Link key={index} to={service.path} className="block text-[13px] text-slate-600 font-medium" onClick={() => setIsMenuOpen(false)}>
-                                        {service.name}
-                                    </Link>
-                                ))}
-                            </div>
-                        )}
-                    </div>
+                    <button 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="lg:hidden p-2 text-[#081b4d] hover:bg-slate-100 rounded-lg transition-colors"
+                    >
+                        {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                    </button>
 
-                    <Link to="/about" className="block text-[14px] font-bold text-[#475569] tracking-wider uppercase" onClick={() => setIsMenuOpen(false)}>
-                        ABOUT US
+                    <Link 
+                        to="/get-quote"
+                        className="hidden lg:flex bg-gradient-to-br from-[#081b4d] to-[#213163] text-white px-8 py-3.5 rounded-lg font-black text-[12px] tracking-[1.5px] uppercase shadow-xl hover:shadow-2xl hover:scale-105 transition-all"
+                    >
+                        Emergency Help
                     </Link>
-
-                    <div className="pt-6 border-t border-slate-100 flex flex-col gap-4">
-                        <div className="flex flex-col">
-                            <span className="text-[10px] font-bold text-[#b81c2f] tracking-[1px] uppercase">Emergency Line</span>
-                            <a href="tel:2147851130" className="text-[20px] font-extrabold text-[#081b4d]">214 785 1130</a>
-                        </div>
-                        <div className="bg-[#b81c2f] text-white py-4 rounded-lg font-bold text-center tracking-widest text-[14px] uppercase" onClick={() => setIsMenuOpen(false)}>
-                            EMERGENCY HELP
-                        </div>
-                    </div>
                 </div>
-            )}
-        </div>
+            </nav>
+
+            {/* Mobile Menu Overlay */}
+            <AnimatePresence>
+                {isMenuOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0, x: '100%' }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: '100%' }}
+                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+                        className="fixed inset-0 top-0 left-0 w-full h-screen bg-white z-[105] pt-[100px] overflow-y-auto px-6"
+                    >
+                        <div className="space-y-6 pb-20">
+                            {[
+                                { label: 'Restoration Services', items: restorationServices, id: 'mob-rest' },
+                                { label: 'Cleaning Services', items: cleaningServices, id: 'mob-clean' },
+                                { label: 'Areas We Serve', items: areasWeServe, id: 'mob-areas' }
+                            ].map((menu) => (
+                                <div key={menu.id} className="border-b border-slate-100 pb-4">
+                                    <button 
+                                        onClick={() => toggleDropdown(menu.id)}
+                                        className="flex items-center justify-between w-full text-lg font-black text-[#081b4d] py-2 uppercase tracking-wide"
+                                    >
+                                        {menu.label}
+                                        <ChevronDown size={20} className={`transition-transform ${openDropdown === menu.id ? 'rotate-180' : ''}`} />
+                                    </button>
+                                    <AnimatePresence>
+                                        {openDropdown === menu.id && (
+                                            <motion.div 
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: 'auto', opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="space-y-3 py-4 pl-4 border-l-2 border-[#b81c2f]">
+                                                    {menu.items.map((item, idx) => (
+                                                        <Link 
+                                                            key={idx} 
+                                                            to={item.path} 
+                                                            className="block text-slate-600 font-bold hover:text-[#b81c2f]"
+                                                            onClick={() => setIsMenuOpen(false)}
+                                                        >
+                                                            {item.name}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+                            ))}
+                            
+                            <Link 
+                                to="/about" 
+                                className="block text-lg font-black text-[#081b4d] py-2 uppercase tracking-wide"
+                                onClick={() => setIsMenuOpen(false)}
+                            >
+                                About Us
+                            </Link>
+
+                            <div className="pt-10 space-y-6">
+                                <div className="p-6 bg-slate-50 rounded-2xl flex items-center justify-between">
+                                    <div>
+                                        <span className="text-[10px] font-black text-[#b81c2f] tracking-[1.5px] uppercase">Ready to Respond</span>
+                                        <div className="text-2xl font-black text-[#081b4d]">214 785 1130</div>
+                                    </div>
+                                    <a href="tel:2147851130" className="w-12 h-12 bg-[#b81c2f] text-white rounded-full flex items-center justify-center shadow-lg">
+                                        <Phone size={20} fill="currentColor" />
+                                    </a>
+                                </div>
+                                <button className="w-full bg-[#081b4d] text-white py-5 rounded-xl font-black tracking-[2px] uppercase">
+                                    Instant Help Request
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 };
 

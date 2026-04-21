@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import DryStateExpertWaterDamageRestoration from './pages/HomePage';
 import ServicePage from './pages/ServicePage';
 import ArlingtonDFW from './pages/ArlingtonDFW';
+import AboutUs from './pages/AboutUs';
 import './index.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DryStateExpertWaterDamageRestoration />} />
           <Route path="/arlington-all-dfw-metroplex" element={<ArlingtonDFW />} />
+          <Route path="/about" element={<AboutUs />} />
           <Route path="/:serviceId" element={<ServicePage />} />
         </Routes>
       </div>
